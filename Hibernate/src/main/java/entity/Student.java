@@ -1,14 +1,13 @@
 package entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 @Table(name = "Student_Detail")
 public class Student {
     @Id
+            @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     String studentName;
 
