@@ -1,6 +1,7 @@
 package entity;
 
 import javax.persistence.*;
+import java.beans.Transient;
 import java.util.Date;
 
 @Entity

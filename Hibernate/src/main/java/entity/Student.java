@@ -12,6 +12,25 @@ public class Student {
     String studentName;
 
     Long rollNo;
+    private  Certificate certificate;
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", studentName='" + studentName + '\'' +
+                ", rollNo=" + rollNo +
+                ", certificate=" + certificate +
+                '}';
+    }
+
+    public Certificate getCertificate() {
+        return certificate;
+    }
+
+    public void setCertificate(Certificate certificate) {
+        this.certificate = certificate;
+    }
 
     public Student(Long id, String studentName, Long rollNo) {
         this.id = id;
@@ -59,12 +78,4 @@ public class Student {
         return Objects.hash(id, studentName, rollNo);
     }
 
-    @Override
-    public String toString() {
-        return "Student{" +
-                "id=" + id +
-                ", studentName='" + studentName + '\'' +
-                ", rollNo=" + rollNo +
-                '}';
-    }
 }

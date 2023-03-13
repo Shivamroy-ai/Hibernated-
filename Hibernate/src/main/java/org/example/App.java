@@ -1,7 +1,9 @@
 package org.example;
 
+import entity.Certificate;
 import entity.IDCard;
 import entity.Student;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -24,12 +26,16 @@ public class App
         Student vikas=new Student();
 //        vikas.setId(4l);
         vikas.setStudentName("Vikas"); vikas.setRollNo(202387030l);
+        Certificate certificate=new Certificate();
+        certificate.setCaurseName("Java");
+        certificate.setCaurseDuration(new Date());
+        vikas.setCertificate(certificate);
 
 //        I Card
 
         IDCard idCard=new IDCard();
-        idCard.setAddress("155/24");
-        idCard.setPhoneNo(89078678l);
+        idCard.setAddress("167/24 Nagar Pure");
+        idCard.setPhoneNo(8780078l);
         idCard.setIcardIssueDate(new Date());
 
         try { FileInputStream inputStream=new FileInputStream(new File("S:/LearningHub/Image/tree.jpg"));
@@ -39,14 +45,24 @@ public class App
             byte []image=new byte[inputStream.available()];
             inputStream.read(image);
             idCard.setImage(image);
-//            int read = inputStream.read();
-//            byte []image=(byte[]) read ;
-//             idCard.setImage();
         }
         catch (Exception e){e.printStackTrace();}
 
+//        PercistanceLayer.createConnection_SaveData(idCard);
+        PercistanceLayer.createConnection_SaveData(vikas);
 
-        PercistanceLayer.createConnection_SaveData(idCard);
+        Student idCard1=(Student) PercistanceLayer.get(Student.class,1l);
+        System.out.println(" Student Detail = "+idCard1.getCertificate());
+        Student idCard3=(Student) PercistanceLayer.get(Student.class,1l);
+        System.out.println(" Student Detail1 = "+idCard3.getStudentName());
+        Student idCard2=(Student) PercistanceLayer.load(Student.class,1l);
+        System.out.println(idCard2.getRollNo());
 
+//       IDCard idCard1=(IDCard) PercistanceLayer.get(IDCard.class,1l);
+//        System.out.println(" Student Detail = "+idCard1.getIcardIssueDate());
+//        IDCard idCard3=(IDCard) PercistanceLayer.get(IDCard.class,1l);
+//        System.out.println(" Student Detail1 = "+idCard3.getIcardIssueDate());
+//        IDCard idCard2=(IDCard) PercistanceLayer.load(IDCard.class,29l); //It Show Exception
+//        System.out.println(idCard2.getAddress());
     }
 }
